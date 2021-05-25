@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/reset.css">
+
+    <!--------------------------  JQuery --------------------------------- -->
+    <script src="https://kit.fontawesome.com/b1cadc3305.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+
+    <script src="/js/main.js"></script>
+</head>
+
+<body>
+<div class="wrap">
+    <header>
+        <div class="header-container">
+            <nav class="header-nav">
+                <ul>
+                    <li>
+                        <div sec:authorize="isAuthenticated()">
+                            <a class="logout" href="/users/logout">로그아웃</a>
+                        </div>
+                        <div sec:authorize="isAnonymous()">
+                            <a class="logout" href="/users/login">로그인</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-title">
+                <a href="/main">
+                    <h1>My Blog</h1>
+                </a>
+                <div sec:authorize="isAuthenticated()">
+                    <p>
+                        <span sec:authentication="name"></span> 님의 하루를 기록해보세요.
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <p>
+                        오늘을 기록해보세요.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="pagination-container">
+        <div class="pagination">
+            <select id="sorting" onchange="showArticle()">
+                <option value="createdAt">생성일</option>
+                <option value="username">ID</option>
+                <option value="title">제목</option>
+                <option value="content">내용</option>
+            </select>
+            <input type="radio" name="isAsc" value="true" onchange="showArticle()"/> 오름차순
+            <input type="radio" name="isAsc" value="false" onchange="showArticle()" checked/> 내림차순
+        </div>
+        <div id="pagination" class="pagination"></div>
+    </div>
+    <!-- aritlce -list 목록  -->
+    <section class="article-list-section">
+        <div class="article-list-container">
+            <div class="article-list-btnbox">
+                <button class="article-list-write-btn" onclick="location.href='/articles/update'">write</button>
+            </div>
+            <div id="articl-list-box">
+                <!--         게시글 목록         -->
+
+                <!--                    -->
+            </div>
+        </div>
+    </section>
+    <!-- aritlce -list 목록 끝  -->
+</div>
+</body>
+
+</html>

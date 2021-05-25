@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog</title>
+    <link rel="stylesheet" href="/css/articleView.css">
+    <link rel="stylesheet" href="/css/reset.css">
+
+    <!--------------------------  JQuery --------------------------------- -->
+    <script src="https://kit.fontawesome.com/b1cadc3305.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <script src="/js/articleView.js"></script>
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            getComment(/*[[${articleOne.aid}]]*/);
+            let articleUsername = /*[[${articleOne.username}]]*/ null;
+        });
+
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <div class="header-container">
+            <nav class="header-nav">
+                <ul>
+                    <li>
+                        <div sec:authorize="isAuthenticated()">
+                            <a class="logout" href="/users/logout">로그아웃</a>
+                        </div>
+                        <div sec:authorize="isAnonymous()">
+                            <a class="logout" href="/users/login">로그인</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-title">
+                <a href="/main">
+                    <h1>My Blog</h1>
+                </a>
+                <div sec:authorize="isAuthenticated()">
+                    <p>
+                        <span sec:authentication="name"></span> 님의 하루를 기록해보세요.
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <p>
+                        오늘을 기록해보세요.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="section-container">
+        <section class="view-box-section">
+            <div class="view-box-container">
+                <div id="view-box">
+                    <div class="view-card">
+                        <input type="text" readonly id="title" th:value="${articleOne.title}">
+                        <input type="text" readonly id="username" th:value="${articleOne.username}">
+                        <textarea readonly id="content" cols="30" rows="10" th:text="${articleOne.content}"></textarea>
+                        <div class="view-btn-box">
+                            <div class="view-btn-left">
+                                <button class="btn list-btn" onclick="location.href='/main'">목록</button>
+                            </div>
+                            <div class="view-btn-right">
+                                <div th:if="${userCheck}==true">
+                                    <button class="btn view-btn"
+                                            th:onclick="|deleteAritcleOne('${articleOne.aid}')|">삭제</button>
+                                    <button class="btn view-btn"
+                                            th:onclick="|getModifyAritcle('${articleOne.aid}')|">수정</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="comment-box-section">
+            <div class="comment-write-box">
+                <div class="comment-write-box-flex">
+                    <textarea id ="comment-content"></textarea>
+                    <button class="comment-add-btn" th:onclick="|addComment('${articleOne.aid}')|">등록</button>
+                </div>
+            </div>
+            <div class="comment-list-box" id="comment-list-box">
+                <!--          댓글 리스트       -->
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+

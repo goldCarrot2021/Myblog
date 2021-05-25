@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog</title>
+    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/reset.css">
+
+    <!--------------------------  JQuery --------------------------------- -->
+    <script src="https://kit.fontawesome.com/b1cadc3305.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<div class="wrap">
+    <header>
+        <div class="header-container">
+            <nav class="header-nav">
+                <ul>
+                    <li>
+                        <div sec:authorize="isAuthenticated()">
+                            <a class="logout" href="/users/logout">로그아웃</a>
+                        </div>
+                        <div sec:authorize="isAnonymous()">
+                            <a class="logout" href="/users/login">로그인</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-title">
+                <a href="/main">
+                    <h1>My Blog</h1>
+                </a>
+                <div sec:authorize="isAuthenticated()">
+                    <p>
+                        <span sec:authentication="name"></span> 님의 하루를 기록해보세요.
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <p>
+                        오늘을 기록해보세요.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--  wirter box 글쓰는 부분  -->
+    <section class="login-box-section">
+        <div class="login-box-container">
+            <div class="login-box">
+                <form action="/users/login" method="post">
+                    <input type="text" placeholder="아이디를 입력하세요." name="username" id="username">
+                    <input type="password" placeholder="비밀번호를 입력하세요" name="password" id="password">
+                    <span th:if ="${loginError} == true">아이디와 비밀번호를 확인하세요.</span>
+                    <button class="btn login-btn">로그인</button>
+                </form>
+                <button class="btn signup-btn" onclick="location.href='/users/signup'">회원가입</button>
+                <button class="btn kakao-btn"  onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=777dbdd06ec3768ab5684c8ff9243af0&redirect_uri=http://dmsql5303.shop/users/kakao/callback&response_type=code'">
+                    카카오로 로그인하기</button>
+                <button class="btn kakao-btn"  onclick="location.href='/main'">
+                    게시물 조회</button>
+            </div>
+        </div>
+    </section>
+    <!--  wirter box 글쓰는 부분 끝  -->
+</div>
+</body>
+
+</html>

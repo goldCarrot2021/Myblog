@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4>">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog</title>
+
+    <link rel="stylesheet" href="/css/articleModify.css">
+    <link rel="stylesheet" href="/css/reset.css">
+
+    <!--------------------------  JQuery --------------------------------- -->
+    <script src="https://kit.fontawesome.com/b1cadc3305.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <script src="/js/articleModify.js"></script>
+
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <div class="header-container">
+            <nav class="header-nav">
+                <ul>
+                    <li>
+                        <div sec:authorize="isAuthenticated()">
+                            <a class="logout" href="/users/logout">로그아웃</a>
+                        </div>
+                        <div sec:authorize="isAnonymous()">
+                            <a class="logout" href="/users/login">로그인</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-title">
+                <a href="/main">
+                    <h1>My Blog</h1>
+                </a>
+                <div sec:authorize="isAuthenticated()">
+                    <p>
+                        <span sec:authentication="name"></span> 님의 하루를 기록해보세요.
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <p>
+                        오늘을 기록해보세요.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="update-box-section">
+        <div class="update-box-container">
+            <div id="update-box">
+                <div class="update-card">
+                    <input type="text" id="title" th:value="${articleOne.title}">
+                    <textarea id="content" cols="30" rows="10" th:text="${articleOne.content}"></textarea>
+                    <div class="update-btn-box">
+                        <div class="update-btn-left">
+                            <button type="button" class="btn list-btn" onclick="location.href='/main'">목록</button>
+                        </div>
+                        <div class="update-btn-right">
+                            <button class="btn update-btn" th:onclick="|updateArticle('${articleOne.aid}')|">수정</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+
+</html>

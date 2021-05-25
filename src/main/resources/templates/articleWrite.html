@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog</title>
+    <link rel="stylesheet" href="/css/articleWrite.css">
+    <link rel="stylesheet" href="/css/reset.css">
+
+    <!--------------------------  JQuery --------------------------------- -->
+    <script src="https://kit.fontawesome.com/b1cadc3305.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <div class="header-container">
+            <nav class="header-nav">
+                <ul>
+                    <li>
+                        <div sec:authorize="isAuthenticated()">
+                            <a class="logout" href="/users/logout">로그아웃</a>
+                        </div>
+                        <div sec:authorize="isAnonymous()">
+                            <a class="logout" href="/users/login">로그인</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-title">
+                <a href="/main">
+                    <h1>My Blog</h1>
+                </a>
+                <div sec:authorize="isAuthenticated()">
+                    <p>
+                        <span sec:authentication="name"></span> 님의 하루를 기록해보세요.
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <p>
+                        오늘을 기록해보세요.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--  wirter box 글쓰는 부분  -->
+    <section class="write-box-section">
+        <div class="write-box-container">
+            <div class="write-box">
+                <form action="/articles" method="post">
+                    <input type="text" maxlength="40" placeholder="제목" name="title">
+                    <span th:text="${error}"></span>
+                    <textarea placeholder="오늘 하루는 어땠나요?" name="content" cols="30" rows="10"></textarea>
+                    <button class="write-btn" type="submit" >write</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!--  wirter box 글쓰는 부분 끝  -->
+</div>
+</body>
+
+</html>

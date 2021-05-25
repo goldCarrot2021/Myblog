@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--  데이터 메세지가 있다면   -->
+    <th:block th:if="${#strings.length(data.message) != 0}">
+        <script>
+            top.alert("[[${data.message}]]");
+        </script>
+    </th:block>
+    <!--  href 링크가 있다면  -->
+    <th:block th:if="${#strings.length(data.href) != 0}">
+        <script>
+            top.location.href = '[[${data.href}]]';
+        </script>
+    </th:block>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+.wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.section-container {
+    width: 600px;
+    height: auto;
+    margin: auto;
+
+}
+
+.btn {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.none{
+    display: none;
+}
+
+
+
+
+/*************** header section *****************/
+
+
+.header-container{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: rgb(0, 81, 255);
+    padding: 20px;
+}
+.header-title{
+    padding: 30px 0;
+}
+.header-title h1{
+    font-size: 50px;
+    font-size: 50px;
+    color: #fff;
+}
+.header-title p{
+    font-size: 20px;
+    font-weight: 300;
+    color: #fff;
+    margin-top: 30px;
+    opacity: 0.7;
+}
+
+.header-nav{
+    float: right;
+}
+
+.logout{
+    color: #fff;
+    font-weight: bold;
+}
+
+
+
+
+
+/*************** view section *****************/
+
+.view-box-container {
+    width: 100%;
+    height: auto;
+    padding-top: 50px;
+    margin: auto;
+
+}
+
+.view-card {
+    width: 100%;
+    height: 480px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 4px 25px 0 rgb(0 0 0 / 15%);
+    padding: 20px;
+    text-align: center;
+}
+
+.view-card input {
+    width: 80%;
+    height: 50px;
+    font-size: 15px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.view-card textarea {
+    width: 80%;
+    padding: 15px;
+    border: none;
+    font-size: 15px;
+    font-family: 'Noto Sans KR', sans-serif;
+    outline: none;
+}
+
+.view-btn-box {
+    width: 90%px;
+    margin: auto;
+}
+
+.view-btn-left {
+    float: left;
+}
+
+.view-btn-right {
+    float: right;
+}
+
+.view-btn {
+    margin-top: 10px;
+    background-color: #1a1aff;
+}
+
+.list-btn {
+    margin-top: 10px;
+    background-color: #d6d6d6;
+}
+
+
+/*************** comment section *****************/
+
+
+
+.comment-write-box-flex{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.comment-write-box{
+    width: 100%;
+    height: 150px;
+    margin: 20px 0;
+}
+
+.comment-write-box textarea{
+    width: 80%;
+    height: 100%;
+}
+
+.comment-add-btn{
+    width: 20%;
+    height: 100%;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #1a1aff;
+}
+
+.comment-card {
+    width: 100%;
+    height: auto;
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 4px 25px 0 rgb(0 0 0 / 15%);
+    padding: 20px;
+}
+
+.comment-name-box {
+    display: flex;
+    justify-content: space-between;
+}
+.comment-username{
+    font-weight: 500;
+}
+
+.comment-btn{
+    background-color: #1a1aff;
+}
+
+
+.comment-content{
+    width: 100%;
+    height: 100%;
+    outline: 0;
+    padding: 10px 0;
+}
+.comment-content textarea{
+    width: 100%;
+    height: 100%;
+    border: #fff;
+}

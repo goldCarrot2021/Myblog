@@ -52,9 +52,23 @@
  - 소셜 로그인
  - 게시글 CRUD
  - 댓글 CRUD
+
 <br>
 <br>
+
+## 테이블 설계
+![image](https://user-images.githubusercontent.com/78028746/120097284-9971d380-c16a-11eb-9065-a54ea570c32d.png)
+
 <br>
+<br>
+
+## API 설계
+![image](https://user-images.githubusercontent.com/78028746/120097304-a989b300-c16a-11eb-8bb7-cb7690d65f14.png)
+![image](https://user-images.githubusercontent.com/78028746/120097309-b1e1ee00-c16a-11eb-84bc-38f6d89cf6d3.png)
+
+<br>
+<br>
+
 
 ## 과제 요구 사항
 ![image](https://user-images.githubusercontent.com/78028746/119311196-b9595100-bcab-11eb-9b8f-0488c5859689.png)
